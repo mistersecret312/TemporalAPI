@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(AbstractControl.class)
 public abstract class ControlMixin {
 
-    @Inject(method = "onRightClicked(Lnet/tardis/mod/tileentities/ConsoleTile;Lnet/minecraft/entity/player/PlayerEntity;)Z", at = @At("TAIL"))
+    @Inject(method = "onRightClicked(Lnet/tardis/mod/tileentities/ConsoleTile;Lnet/minecraft/entity/player/PlayerEntity;)Z", at = @At("TAIL"), remap = false)
     public void onUsed(ConsoleTile console, PlayerEntity player, CallbackInfoReturnable<Boolean> cir){
         MinecraftForge.EVENT_BUS.post(new ControlEvent.ControlHitEvent(((AbstractControl) (Object) this)));
     }

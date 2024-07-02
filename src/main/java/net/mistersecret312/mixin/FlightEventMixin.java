@@ -14,13 +14,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FlightEvent.class)
 public abstract class FlightEventMixin {
 
-    @Inject(method = "onComplete(Lnet/tardis/mod/tileentities/ConsoleTile;)Z", at = @At("TAIL"))
+    @Inject(method = "onComplete(Lnet/tardis/mod/tileentities/ConsoleTile;)Z", at = @At("TAIL"), remap = false)
     public void onSuccessEvent(ConsoleTile tile, CallbackInfoReturnable<Boolean> cir){
-        MinecraftForge.EVENT_BUS.post(new FlightEventEvent.FlightEventSuccessEvent(((FlightEvent) (Object) this), tile));
+        MinecraftForge.EVENT_BUS.post(new FlightEventEvent.SuccessFlightEvent(((FlightEvent) (Object) this), tile));
     }
 
-    @Inject(method = "onMiss(Lnet/tardis/mod/tileentities/ConsoleTile;)V", at = @At("TAIL"))
+    @Inject(method = "onMiss(Lnet/tardis/mod/tileentities/ConsoleTile;)V", at = @At("TAIL"), remap = false)
     public void onFailEvent(ConsoleTile tile, CallbackInfo ci){
-        MinecraftForge.EVENT_BUS.post(new FlightEventEvent.FlightEventFailEvent(((FlightEvent) (Object) this), tile));
+        MinecraftForge.EVENT_BUS.post(new FlightEventEvent.FailFlightEvent(((FlightEvent) (Object) this), tile));
     }
 }

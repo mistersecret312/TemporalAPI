@@ -25,10 +25,11 @@ public class FlightEventEvent extends Event {
 
 
     /**
-     * If not canceled, NTM will set the event as per usual.
+     * If canceled, NTM will not set the event.
+     * Only applies to random events during flight.
      */
-    public static class FlightEventStartEvent extends FlightEventEvent {
-        public FlightEventStartEvent(FlightEvent event, ConsoleTile console){
+    public static class StartFlightEvent extends FlightEventEvent {
+        public StartFlightEvent(FlightEvent event, ConsoleTile console){
             super(event, console);
         }
 
@@ -38,14 +39,14 @@ public class FlightEventEvent extends Event {
         }
     }
 
-    public static class FlightEventSuccessEvent extends FlightEventEvent {
-        public FlightEventSuccessEvent(FlightEvent event, ConsoleTile console){
+    public static class SuccessFlightEvent extends FlightEventEvent {
+        public SuccessFlightEvent(FlightEvent event, ConsoleTile console){
             super(event, console);
         }
     }
 
-    public static class FlightEventFailEvent extends FlightEventEvent {
-        public FlightEventFailEvent(FlightEvent event, ConsoleTile console){
+    public static class FailFlightEvent extends FlightEventEvent {
+        public FailFlightEvent(FlightEvent event, ConsoleTile console){
             super(event, console);
         }
     }

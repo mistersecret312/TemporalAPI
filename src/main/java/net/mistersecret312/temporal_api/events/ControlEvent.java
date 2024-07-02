@@ -34,5 +34,28 @@ public class ControlEvent extends Event {
         public ItemStack getItemStack() {
             return stack;
         }
+
+        @Override
+        public boolean isCancelable() {
+            return true;
+        }
+    }
+
+    public static class SonicTakeEvent extends ControlEvent
+    {
+        private final ItemStack stack;
+        public SonicTakeEvent(AbstractControl control, ItemStack stack) {
+            super(control);
+            this.stack = stack;
+        }
+
+        public ItemStack getItemStack() {
+            return stack;
+        }
+
+        @Override
+        public boolean isCancelable() {
+            return true;
+        }
     }
 }

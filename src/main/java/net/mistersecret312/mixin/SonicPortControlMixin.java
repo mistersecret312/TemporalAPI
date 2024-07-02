@@ -25,11 +25,10 @@ public class SonicPortControlMixin {
      * @author mistersecret312
      * @reason Placing items into the Sonic Port
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public boolean onRightClicked(ConsoleTile console, PlayerEntity player) {
         if(!console.getWorld().isRemote()) {
-            if(ItemTagsInit.SONIC.contains(player.getHeldItemMainhand().getItem()) && console.getSonicItem().isEmpty()) {
-                MinecraftForge.EVENT_BUS.post(new ControlEvent.SonicPutEvent(((SonicPortControl) (Object) this), player.getHeldItemMainhand()));
+            if(ItemTagsInit.SONIC.contains(player.getHeldItemMainhand().getItem()) && console.getSonicItem().isEmpty() && !MinecraftForge.EVENT_BUS.post(new ControlEvent.SonicPutEvent(((SonicPortControl) (Object) this), player.getHeldItemMainhand()))) {
                 console.setSonicItem(player.getHeldItemMainhand());
                 player.setHeldItem(Hand.MAIN_HAND, ItemStack.EMPTY);
                 console.getSonicItem().getCapability(Capabilities.SONIC_CAPABILITY).ifPresent(cap -> {
@@ -41,7 +40,7 @@ public class SonicPortControlMixin {
                     }
                 });
             }
-            else if(player.getHeldItemMainhand().isEmpty() && !console.getSonicItem().isEmpty()) {
+            else if(player.getHeldItemMainhand().isEmpty() && !console.getSonicItem().isEmpty() && !MinecraftForge.EVENT_BUS.post(new ControlEvent.SonicTakeEvent(((SonicPortControl) (Object) this), console.getSonicItem()))) {
                 InventoryHelper.spawnItemStack(console.getWorld(), player.getPosX(), player.getPosY(), player.getPosZ(), console.getSonicItem());
                 console.setSonicItem(ItemStack.EMPTY);
             }
