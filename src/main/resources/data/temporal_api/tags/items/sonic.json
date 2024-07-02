@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "tardis:sonic",
+    {
+      "id": "tadditions:data_drive",
+      "required": false
+    },
+    {
+      "id": "aseoha:sonic_fourteenth",
+      "required": false
+    }
+  ]
+}

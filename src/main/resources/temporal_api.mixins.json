@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "net.mistersecret312.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ComponentMixin",
+    "ConsoleMixin",
+    "ControlMixin",
+    "EngineSlotMixin",
+    "SonicPortControlMixin"
+  ],
+  "minVersion": "0.8",
+  "client": [
+    "EngineScreenMixin"
+  ]
+}
