@@ -3,6 +3,7 @@ package net.mistersecret312.temporal_api;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.TickEvent;
@@ -68,7 +69,7 @@ public class TemporalAPIMod
 
     }
 
-    @Mod.EventBusSubscriber(modid = TemporalAPIMod.MOD_ID)
+    @Mod.EventBusSubscriber(modid = TemporalAPIMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class TestEvents
     {
         @SubscribeEvent
