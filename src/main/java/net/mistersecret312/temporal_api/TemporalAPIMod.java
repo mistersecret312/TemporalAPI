@@ -3,6 +3,7 @@ package net.mistersecret312.temporal_api;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Direction;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -21,11 +22,15 @@ import net.mistersecret312.temporal_api.events.ControlEvent;
 import net.mistersecret312.temporal_api.events.FlightEventEvent;
 import net.mistersecret312.temporal_api.events.MinigameStartEvent;
 import net.mistersecret312.temporal_api.events.TardisEvent;
+import net.tardis.mod.cap.ITardisWorldData;
 import net.tardis.mod.items.SonicItem;
 import net.tardis.mod.items.TItems;
 import net.tardis.mod.registries.FlightEventRegistry;
+import net.tardis.mod.tileentities.inventory.PanelInventory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Random;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TemporalAPIMod.MOD_ID)
@@ -67,41 +72,5 @@ public class TemporalAPIMod
     private void processIMC(final InterModProcessEvent event)
     {
 
-    }
-
-    @Mod.EventBusSubscriber(modid = TemporalAPIMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-    public static class TestEvents
-    {
-        @SubscribeEvent
-        public static void onSonicEnter(ControlEvent.SonicPutEvent event)
-        {
-            System.out.println("Successful Sonic Port! " + event.getItemStack().getItem());
-        }
-
-        @SubscribeEvent
-        public static void onMinigame(MinigameStartEvent event)
-        {
-            if(event.getStack().getItem().equals(TItems.ARTRON_CAPACITOR_HIGH.get()))
-                event.setCanceled(true);
-        }
-
-        @SubscribeEvent
-        public static void onNewTARDIS(TardisEvent.TardisCreatedEvent event)
-        {
-            SonicItem item = new SonicItem();
-            ItemStack sonic = new ItemStack(item);
-            item.setTardis(sonic, event.getConsole().getWorld().getDimensionKey().getLocation());
-            item.charge(sonic, 500);
-            event.getConsole().setSonicItem(sonic);
-        }
-
-        @SubscribeEvent
-        public static void onNewEvent(FlightEventEvent.StartFlightEvent event)
-        {
-            if(event.getEvent().getEntry().equals(FlightEventRegistry.TIMEWIND.get()))
-            {
-                System.out.println(event.getEvent().getEntry().toString());
-            }
-        }
     }
 }

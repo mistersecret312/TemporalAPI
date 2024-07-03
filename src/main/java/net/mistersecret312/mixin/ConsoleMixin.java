@@ -21,9 +21,4 @@ public abstract class ConsoleMixin {
             tile.setFlightEvent(event);
     }
 
-    @Inject(method = "onInitialSpawn()V", at = @At("TAIL"), remap = false)
-    public void onCreated(CallbackInfo ci){
-        MinecraftForge.EVENT_BUS.post(new TardisEvent.TardisCreatedEvent(((ConsoleTile) (Object) this)));
-    }
-
 }

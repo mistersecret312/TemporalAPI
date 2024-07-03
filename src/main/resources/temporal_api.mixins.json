@@ -6,7 +6,8 @@
     "ConsoleMixin",
     "ControlMixin",
     "EngineSlotMixin",
-    "SonicPortControlMixin"
+    "SonicPortControlMixin",
+    "TardisHelperMixin"
   ],
   "minVersion": "0.8",
   "client": [
