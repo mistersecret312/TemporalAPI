@@ -38,7 +38,7 @@ public abstract class EngineScreenMixin extends ContainerScreen<EngineContainer>
         ItemStack held = this.playerInventory.getItemStack();
         if(!held.isEmpty() && slotIn instanceof EngineSlot) {
             if(slotIn.isItemValid(held))
-                if(!MinecraftForge.EVENT_BUS.post(new MinigameStartEvent(held, this.container)))
+                if(!MinecraftForge.EVENT_BUS.post(new MinigameStartEvent(held,this.container, this.playerInventory.player)))
                     Minecraft.getInstance().enqueue(() -> Minecraft.getInstance().displayGuiScreen(new WireGameScreen(slotId, this.container.getPanelDirection())));
         }
         super.handleMouseClick(slotIn, slotId, mouseButton, type);
