@@ -41,7 +41,7 @@ public class TardisEvent extends Event {
 
         @Override
         public boolean isCancelable() {
-            return super.isCancelable();
+            return true;
         }
     }
 
