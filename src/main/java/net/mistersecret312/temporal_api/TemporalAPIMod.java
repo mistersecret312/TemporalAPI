@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -26,7 +27,10 @@ import net.tardis.mod.cap.ITardisWorldData;
 import net.tardis.mod.items.SonicItem;
 import net.tardis.mod.items.TItems;
 import net.tardis.mod.registries.FlightEventRegistry;
+import net.tardis.mod.registries.UpgradeRegistry;
 import net.tardis.mod.tileentities.inventory.PanelInventory;
+import net.tardis.mod.upgrades.AtriumUpgrade;
+import net.tardis.mod.upgrades.KeyFobUpgrade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

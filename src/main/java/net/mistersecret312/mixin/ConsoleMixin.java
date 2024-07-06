@@ -23,11 +23,13 @@ public abstract class ConsoleMixin {
             tile.setFlightEvent(event);
     }
 
-    @Inject(method = "takeoff()Z", at = @At("RETURN"), cancellable = true, remap = false)
-    public void onTakeOff(CallbackInfoReturnable<Boolean> cir)
+    @Inject(method = "takeoff(Z)Z", at = @At("HEAD"), cancellable = true, remap = false)
+    public void takeoff(boolean towed, CallbackInfoReturnable<Boolean> cir)
     {
-        if(!MinecraftForge.EVENT_BUS.post(new TardisEvent.TakeoffEvent(((ConsoleTile) (Object) this))))
-            cir.setReturnValue(cir.getReturnValue());
+        TardisEvent.TakeoffEvent event = new TardisEvent.TakeoffEvent(((ConsoleTile) (Object) this));
+        MinecraftForge.EVENT_BUS.post(event);
+        if(event.isCanceled())
+            cir.setReturnValue(false);
     }
 
     @Inject(method = "calcSpeed()F", at = @At("RETURN"), cancellable = true, remap = false)
