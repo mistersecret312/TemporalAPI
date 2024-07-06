@@ -75,11 +75,6 @@ mixin {
 }
 
 repositories{
-    maven { url "https://dvs1.progwml6.com/files/maven/" } //JEI Maven
-    maven { url "https://maven.blamejared.com/" } // IE Maven
-    maven { url "https://www.cursemaven.com" } //Curse Maven
-    //maven { url "https://maven.enginehub.org/repo/" } //WorldEdit Maven
-    maven { url 'https://modmaven.dev/' } //Mekanism Maven
     maven { url 'https://jitpack.io' }
 }
 
@@ -89,16 +84,6 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.20'
     minecraft "net.minecraftforge:forge:${forge_version}"
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-    //compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${ie_version}")
-    //runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${ie_version}")
-    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-    runtimeOnly fg.deobf("curse.maven:configured-457570:${configured_version}")
-    runtimeOnly fg.deobf("curse.maven:terraforged-363820:3451426")
-    //runtimeOnly  ("com.sk89q.worldedit:worldedit-core:${world_edit_version}")
-    //runtimeOnly fg.deobf("com.sk89q.worldedit:worldedit-forge-mc${world_edit_mc_version}:${world_edit_version}")
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")// core
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")// Mekanism: Generators
     implementation fg.deobf('com.gitlab.Spectre0987:TardisMod:1.5.4')
 }
 
