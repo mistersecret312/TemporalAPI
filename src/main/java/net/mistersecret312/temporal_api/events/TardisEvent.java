@@ -16,10 +16,11 @@ public class TardisEvent extends Event {
     }
 
     /**
-     * If canceled, TARDIS will attempt to take off on the next tick, firing this event once more, until it isn't canceled
+     *If canceled, TARDIS will attempt to take off on the next tick, firing this event once more, until it isn't canceled
      */
     public static class TakeoffEvent extends TardisEvent
     {
+        public boolean action;
         public TakeoffEvent(ConsoleTile tile) {
             super(tile);
         }
