@@ -10,6 +10,7 @@
     "TardisHelperMixin"
   ],
   "minVersion": "0.8",
+  "plugin": "net.mistersecret312.temporal_api.MixinPlugin",
   "client": [
     "EngineScreenMixin"
   ]

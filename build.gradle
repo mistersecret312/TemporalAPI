@@ -6,11 +6,16 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.0+', changing: true
         classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
         classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.4.0"
     }
 }
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "8.1.0"
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
@@ -74,6 +79,10 @@ mixin {
     disableOverwriteChecker = true;
 }
 
+configurations {
+    implementation.extendsFrom shadow
+}
+
 repositories{
     maven { url 'https://jitpack.io' }
 }
@@ -85,8 +94,14 @@ dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
     implementation fg.deobf('com.gitlab.Spectre0987:TardisMod:1.5.4')
+    shadow(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.6"))
 }
 
+shadowJar {
+    configurations = [project.configurations.shadow]
+    relocate("com.llamalad7.mixinextras", "net.mistersecret312.mixinextras")
+    mergeServiceFiles() // Very important!
+}
 
 //Reference: https://github.com/SizableShrimp/ForgeTemplate/blob/1.16.x/build.gradle#L158-L188
 def resourceTargets = ['META-INF/mods.toml', 'pack.mcmeta']
