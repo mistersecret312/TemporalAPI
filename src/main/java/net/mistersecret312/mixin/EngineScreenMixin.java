@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ClickType;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -16,11 +15,6 @@ import net.tardis.mod.containers.EngineContainer;
 import net.tardis.mod.containers.slot.EngineSlot;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EngineContainerScreen.class)
 public abstract class EngineScreenMixin extends ContainerScreen<EngineContainer> {
@@ -33,7 +27,7 @@ public abstract class EngineScreenMixin extends ContainerScreen<EngineContainer>
      * @author mistersecret312
      * @reason MinigameStartEvent
      */
-    @Overwrite
+    @Overwrite(remap = false)
     protected void handleMouseClick(Slot slotIn, int slotId, int mouseButton, ClickType type) {
         ItemStack held = this.playerInventory.getItemStack();
         if(!held.isEmpty() && slotIn instanceof EngineSlot) {
