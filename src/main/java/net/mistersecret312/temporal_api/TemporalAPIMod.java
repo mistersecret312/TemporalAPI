@@ -26,6 +26,7 @@ import net.mistersecret312.temporal_api.events.TardisEvent;
 import net.tardis.mod.cap.ITardisWorldData;
 import net.tardis.mod.items.SonicItem;
 import net.tardis.mod.items.TItems;
+import net.tardis.mod.registries.ControlRegistry;
 import net.tardis.mod.registries.FlightEventRegistry;
 import net.tardis.mod.registries.UpgradeRegistry;
 import net.tardis.mod.tileentities.inventory.PanelInventory;

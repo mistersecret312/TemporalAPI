@@ -12,10 +12,6 @@ buildscript {
     }
 }
 
-plugins {
-    id "com.github.johnrengelman.shadow" version "8.1.0"
-}
-
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
@@ -79,10 +75,6 @@ mixin {
     disableOverwriteChecker = true;
 }
 
-configurations {
-    implementation.extendsFrom shadow
-}
-
 repositories{
     maven { url 'https://jitpack.io' }
 }
@@ -94,13 +86,6 @@ dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
     implementation fg.deobf('com.gitlab.Spectre0987:TardisMod:1.5.4')
-    shadow(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.6"))
-}
-
-shadowJar {
-    configurations = [project.configurations.shadow]
-    relocate("com.llamalad7.mixinextras", "net.mistersecret312.mixinextras")
-    mergeServiceFiles() // Very important!
 }
 
 //Reference: https://github.com/SizableShrimp/ForgeTemplate/blob/1.16.x/build.gradle#L158-L188
