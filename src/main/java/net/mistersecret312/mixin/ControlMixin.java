@@ -2,6 +2,7 @@ package net.mistersecret312.mixin;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.mistersecret312.temporal_api.events.ControlEvent;
 import net.tardis.mod.controls.AbstractControl;
 import net.tardis.mod.tileentities.ConsoleTile;
@@ -14,11 +15,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ControlMixin {
 
     @Inject(method = "onHit(Lnet/tardis/mod/tileentities/ConsoleTile;Lnet/minecraft/entity/player/PlayerEntity;)Z", at = @At("HEAD"), cancellable = true, remap = false)
-    public void onUsed(ConsoleTile console, PlayerEntity player, CallbackInfoReturnable<Boolean> cir){
+    public void onUsed(ConsoleTile console, PlayerEntity player, CallbackInfoReturnable<Boolean> cir)
+    {
         ControlEvent.ControlHitEvent event =  new ControlEvent.ControlHitEvent(((AbstractControl) (Object) this), player);
         MinecraftForge.EVENT_BUS.post(event);
         if(event.isCanceled())
             cir.setReturnValue(false);
     }
+
 
 }

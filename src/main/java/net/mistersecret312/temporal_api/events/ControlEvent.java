@@ -4,8 +4,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.Event;
 import net.tardis.mod.controls.AbstractControl;
-import net.tardis.mod.controls.SonicPortControl;
-import net.tardis.mod.registries.ControlRegistry;
 
 public class ControlEvent extends Event {
 
@@ -26,6 +24,7 @@ public class ControlEvent extends Event {
 
     /**
      * If canceled, the control will not do its action.
+     * Handles LMB interaction, for RMB interaction, use {@link net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific}.
      */
     public static class ControlHitEvent extends ControlEvent{
         public ControlHitEvent(AbstractControl control, PlayerEntity player){
