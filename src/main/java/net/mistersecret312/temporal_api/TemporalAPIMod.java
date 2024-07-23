@@ -78,15 +78,4 @@ public class TemporalAPIMod
     {
 
     }
-
-    @Mod.EventBusSubscriber(modid = TemporalAPIMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-    public static class TestEvents
-    {
-        @SubscribeEvent
-        public static void onControlHit(ControlEvent.ControlHitEvent event)
-        {
-            if(event.getControl().getEntry().equals(ControlRegistry.MONITOR.get()))
-                    event.setCanceled(true);
-        }
-    }
 }

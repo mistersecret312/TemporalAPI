@@ -8,10 +8,9 @@
     "EngineSlotMixin",
     "FlightEventMixin",
     "SonicPortControlMixin",
+    "EngineScreenMixin",
     "TardisHelperMixin"
   ],
   "minVersion": "0.8",
-  "client": [
-    "EngineScreenMixin"
-  ]
+  "client": []
 }
