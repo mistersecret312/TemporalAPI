@@ -5,7 +5,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.mistersecret312.temporal_api.events.ComponentEvent;
 import net.tardis.mod.containers.slot.EngineSlot;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.Nonnull;
 

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "tardis:manual",
+    {
+      "id": "tadditions:upgrades_manual",
+      "required": false
+    },
+    {
+      "id": "aseoha:aseoha_manual",
+      "required": false
+    }
+
+  ]
+}

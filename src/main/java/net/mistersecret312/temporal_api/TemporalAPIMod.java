@@ -12,7 +12,9 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -24,6 +26,7 @@ import net.mistersecret312.temporal_api.events.FlightEventEvent;
 import net.mistersecret312.temporal_api.events.MinigameStartEvent;
 import net.mistersecret312.temporal_api.events.TardisEvent;
 import net.tardis.mod.cap.ITardisWorldData;
+import net.tardis.mod.config.TConfig;
 import net.tardis.mod.items.SonicItem;
 import net.tardis.mod.items.TItems;
 import net.tardis.mod.registries.ControlRegistry;
@@ -58,6 +61,12 @@ public class TemporalAPIMod
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        AdvancementTriggerInit.init();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TemporalAPIConfig.COMMON_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TemporalAPIConfig.CLIENT_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, TemporalAPIConfig.SERVER_SPEC);
+
     }
 
     private void setup(final FMLCommonSetupEvent event)

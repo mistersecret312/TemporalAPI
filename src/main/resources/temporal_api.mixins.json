@@ -1,16 +1,19 @@
 {
-  "required": true,
-  "package": "net.mistersecret312.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "ConsoleMixin",
-    "ControlMixin",
-    "EngineSlotMixin",
-    "FlightEventMixin",
-    "SonicPortControlMixin",
-    "EngineScreenMixin",
-    "TardisHelperMixin"
-  ],
-  "minVersion": "0.8",
-  "client": []
+    "required": true,
+    "package": "net.mistersecret312.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "ConsoleChangeMessageMixin",
+        "ConsoleMixin",
+        "ControlMixin",
+        "EngineScreenMixin",
+        "EngineSlotMixin",
+        "FlightEventMixin",
+        "SonicPortControlMixin",
+        "TardisHelperMixin"
+    ],
+    "minVersion": "0.8",
+    "client": [
+        "InvisibleRendererMixin"
+    ]
 }
