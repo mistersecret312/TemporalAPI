@@ -46,7 +46,7 @@ public class TemporalAPIConfig
 
             useHotbarForManual = builder.translation("config.tardis.useHotbarForManual")
                     .comment("A toggle to use the entire hotbar for rendering the control names instead of just the hand for a manual")
-                    .define("useHotbarForManual", true, Boolean.class::isInstance);
+                    .define("useHotbarForManual", false, Boolean.class::isInstance);
         }
     }
 
