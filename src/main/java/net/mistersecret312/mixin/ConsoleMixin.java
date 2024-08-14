@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public abstract class ConsoleMixin
         MinecraftForge.EVENT_BUS.post(event);
         if(event.isCanceled())
             cir.setReturnValue(false);
-        else AdvancementTriggerInit.TAKEOFF.testForAll((ServerPlayerEntity) ((ConsoleTile) (Object) this).getPilot(), ((ConsoleTile) (Object) this).getCurrentDimension());
+        else if(!((ConsoleTile) (Object) this).getWorld().isRemote()) AdvancementTriggerInit.TAKEOFF.testForAll((ServerPlayerEntity) ((ConsoleTile) (Object) this).getPilot(), ((ConsoleTile) (Object) this).getCurrentDimension());
     }
 
     @Inject(method = "calcSpeed()F", at = @At("RETURN"), cancellable = true, remap = false)
@@ -76,9 +77,16 @@ public abstract class ConsoleMixin
         {
             console.scaleDestination();
             console.land();
-            AdvancementTriggerInit.LAND.testForAll((ServerPlayerEntity) console.getPilot(), console.getPercentageJourney() > 0.5D ? console.getDestinationDimension() : console.getCurrentDimension(), console.isCrashing());
             console.updateClient();
         }
+    }
+
+    @Inject(method = "land()V", at = @At("HEAD"), remap = false)
+    public void land(CallbackInfo ci)
+    {
+        ConsoleTile console = ((ConsoleTile) (Object) this);
+        if(!console.getWorld().isRemote)
+            AdvancementTriggerInit.LAND.testForAll((ServerPlayerEntity) console.getPilot(), console.getPercentageJourney() > 0.5D ? console.getDestinationDimension() : console.getCurrentDimension(), console.isCrashing());
     }
 
     @ModifyConstant(method = "calcSpeed()F", constant = @Constant(ordinal = 2), remap = false)
