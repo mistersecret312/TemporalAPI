@@ -42,17 +42,4 @@ public class CommonEvents {
             }
         }
     }
-    /*
-    @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event) {
-        if(event.getWorld().getDimensionType().equals(TDimensions.TARDIS_DIMENSIONS)) {
-            if(TardisHelper.getConsoleInWorld(((ServerWorld) event.getWorld()).getWorld()).isPresent()){
-                Optional<ConsoleTile> console = TardisHelper.getConsoleInWorld(((ServerWorld) event.getWorld()).getWorld());
-                console.ifPresent((tile -> {
-                    tile.removeControls();
-                    tile.getOrCreateControls();
-                }));
-            }
-        }
-    }*/
 }
