@@ -34,7 +34,6 @@ public class CommonEvents {
                 if (TardisHelper.getConsoleInWorld(event.getServer().getWorld(worlds.get(i))).isPresent()) {
                     Optional<ConsoleTile> console = TardisHelper.getConsoleInWorld(event.getServer().getWorld(worlds.get(i)));
                     console.ifPresent((tile -> {
-                        System.out.println("recreating controls");
                         tile.removeControls();
                         tile.getOrCreateControls();
                     }));
