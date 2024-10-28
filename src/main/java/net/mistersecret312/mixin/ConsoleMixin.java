@@ -85,8 +85,11 @@ public abstract class ConsoleMixin
     public void land(CallbackInfo ci)
     {
         ConsoleTile console = ((ConsoleTile) (Object) this);
-        if(!console.getWorld().isRemote)
-            AdvancementTriggerInit.LAND.testForAll((ServerPlayerEntity) console.getPilot(), console.getPercentageJourney() > 0.5D ? console.getDestinationDimension() : console.getCurrentDimension(), console.isCrashing());
+        if (!console.getWorld().isRemote) {
+            if ((ServerPlayerEntity) console.getPilot() != null) {
+                AdvancementTriggerInit.LAND.testForAll((ServerPlayerEntity) console.getPilot(), console.getPercentageJourney() > 0.5D ? console.getDestinationDimension() : console.getCurrentDimension(), console.isCrashing());
+            }
+        }
     }
 
     @ModifyConstant(method = "calcSpeed()F", constant = @Constant(ordinal = 2), remap = false)
