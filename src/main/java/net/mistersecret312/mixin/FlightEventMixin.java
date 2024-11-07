@@ -18,7 +18,8 @@ public abstract class FlightEventMixin {
 
     @Inject(method = "onComplete(Lnet/tardis/mod/tileentities/ConsoleTile;)Z", at = @At("RETURN"), remap = false)
     public void onSuccessEvent(ConsoleTile tile, CallbackInfoReturnable<Boolean> cir){
-        AdvancementTriggerInit.FLIGHT_EVENT.testForAll((ServerPlayerEntity) tile.getPilot(), ((FlightEvent) (Object) this).getEntry(), cir.getReturnValueZ());
+        if(tile.getPilot() != null)
+            AdvancementTriggerInit.FLIGHT_EVENT.testForAll((ServerPlayerEntity) tile.getPilot(), ((FlightEvent) (Object) this).getEntry(), cir.getReturnValueZ());
         MinecraftForge.EVENT_BUS.post(new FlightEventEvent.SuccessFlightEvent(((FlightEvent) (Object) this), tile));
     }
 

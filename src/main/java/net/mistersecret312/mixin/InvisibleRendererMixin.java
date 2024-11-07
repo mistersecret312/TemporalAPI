@@ -1,5 +1,7 @@
 package net.mistersecret312.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,10 +22,10 @@ import java.util.List;
 public class InvisibleRendererMixin
 {
 
-    @Redirect(method = "renderName(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/text/ITextComponent;Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;I)V",
-    at = @At(value = "INVOKE", target = "Lnet/tardis/mod/helper/PlayerHelper;isInEitherHand(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/Item;)Z"),
-    remap = false)
-    public boolean renderName(LivingEntity holder, Item item)
+    @WrapOperation(method = "renderName(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/text/ITextComponent;Lcom/mojang/blaze3d/matrix/MatrixStack;Lnet/minecraft/client/renderer/IRenderTypeBuffer;I)V",
+            at = @At(value = "INVOKE", target = "Lnet/tardis/mod/helper/PlayerHelper;isInEitherHand(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/Item;)Z"),
+            remap = false)
+    public boolean renderName(LivingEntity holder, Item item, Operation<Boolean> original)
     {
         if(TemporalAPIConfig.CLIENT.useHotbarForManual.get() && holder instanceof ClientPlayerEntity)
         {

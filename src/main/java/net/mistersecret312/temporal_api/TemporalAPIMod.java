@@ -1,5 +1,6 @@
 package net.mistersecret312.temporal_api;
 
+import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
@@ -66,6 +67,7 @@ public class TemporalAPIMod
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TemporalAPIConfig.COMMON_SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TemporalAPIConfig.CLIENT_SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, TemporalAPIConfig.SERVER_SPEC);
+        MixinExtrasBootstrap.init();
 
     }
 

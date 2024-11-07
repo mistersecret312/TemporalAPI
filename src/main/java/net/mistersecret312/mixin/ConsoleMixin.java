@@ -46,7 +46,7 @@ public abstract class ConsoleMixin
         MinecraftForge.EVENT_BUS.post(event);
         if(event.isCanceled())
             cir.setReturnValue(false);
-        else if(!((ConsoleTile) (Object) this).getWorld().isRemote()) AdvancementTriggerInit.TAKEOFF.testForAll((ServerPlayerEntity) ((ConsoleTile) (Object) this).getPilot(), ((ConsoleTile) (Object) this).getCurrentDimension());
+        else if(!((ConsoleTile) (Object) this).getWorld().isRemote() && ((ConsoleTile) (Object) this).getPilot() != null) AdvancementTriggerInit.TAKEOFF.testForAll((ServerPlayerEntity) ((ConsoleTile) (Object) this).getPilot(), ((ConsoleTile) (Object) this).getCurrentDimension());
     }
 
     @Inject(method = "calcSpeed()F", at = @At("RETURN"), cancellable = true, remap = false)
