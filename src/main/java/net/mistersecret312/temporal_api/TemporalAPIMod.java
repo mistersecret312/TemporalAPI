@@ -1,18 +1,6 @@
 package net.mistersecret312.temporal_api;
 
-import com.llamalad7.mixinextras.MixinExtrasBootstrap;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -20,26 +8,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.mistersecret312.temporal_api.events.ControlEvent;
-import net.mistersecret312.temporal_api.events.FlightEventEvent;
-import net.mistersecret312.temporal_api.events.MinigameStartEvent;
-import net.mistersecret312.temporal_api.events.TardisEvent;
-import net.tardis.mod.cap.ITardisWorldData;
-import net.tardis.mod.config.TConfig;
-import net.tardis.mod.items.SonicItem;
-import net.tardis.mod.items.TItems;
-import net.tardis.mod.registries.ControlRegistry;
-import net.tardis.mod.registries.FlightEventRegistry;
-import net.tardis.mod.registries.UpgradeRegistry;
-import net.tardis.mod.tileentities.inventory.PanelInventory;
-import net.tardis.mod.upgrades.AtriumUpgrade;
-import net.tardis.mod.upgrades.KeyFobUpgrade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Random;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TemporalAPIMod.MOD_ID)
@@ -67,7 +38,6 @@ public class TemporalAPIMod
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TemporalAPIConfig.COMMON_SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TemporalAPIConfig.CLIENT_SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, TemporalAPIConfig.SERVER_SPEC);
-        MixinExtrasBootstrap.init();
 
     }
 
