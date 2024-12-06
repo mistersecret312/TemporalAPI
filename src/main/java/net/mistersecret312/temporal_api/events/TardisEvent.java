@@ -75,6 +75,7 @@ public class TardisEvent extends Event {
         public float fuelUse;
         public FuelUseCalculationEvent(ConsoleTile tile, float fuelUse) {
             super(tile);
+            this.fuelUse = fuelUse;
         }
 
         public float getFuelUse() {
